@@ -1,6 +1,6 @@
-drop database something;
-create database something;
-use something;
+drop database ass2;
+create database ass2;
+use ass2;
 
 create table NhanVien(
     CMND varchar(15) not null,
