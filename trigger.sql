@@ -110,4 +110,26 @@ END$$
 
 DELIMITER ;
 
+DELIMITER $$
 
+CREATE TRIGGER delete_BienBanXuat
+    after DELETE
+    ON BienBanXuat FOR EACH ROW
+BEGIN
+    Delete from BienBanNhapXuat where ID = old.ID;
+END$$
+
+DELIMITER ;
+
+
+
+DELIMITER $$
+
+CREATE TRIGGER delete_BienBanNhap
+    after DELETE
+    ON BienBanNhap FOR EACH ROW
+BEGIN
+    Delete from BienBanNhapXuat where ID = old.ID;
+END$$
+
+DELIMITER ;
