@@ -1,3 +1,4 @@
+
 delete from TaiXe where CMND = '12345678';
 call INSERT_PHUONGTIEN("49G1-15677","Toyota","2016-06-15")
 call INSERT_PHUONGTIEN("60G1-39512","Hyundai","2016-06-15")
