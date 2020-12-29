@@ -11,7 +11,7 @@ create table NhanVien(
     primary key (CMND)
 );
 create table SdtNhanVien(
-	Std char(10) primary key,
+	Sdt char(10) primary key,
     CMNDNhanVien varchar(15) not null,
     foreign key(CMNDNhanVien) references NhanVien(CMND) on delete cascade
 );
