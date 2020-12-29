@@ -27,7 +27,7 @@ BEGIN
         If (select count(*) from YeuCauLayHang Where ID = new.YeuCauLayHang <> 0) Then
             update YeuCauLayHang
             Set TrangThai = 'DaXuLy'
-            Where ID = old.YeuCauID;
+            Where ID = new.YeuCauLayHang;
         End IF;
     END IF;
 END$$
@@ -37,11 +37,51 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE TRIGGER delete_NhanVien
-    Before DELETE
-    ON NguoiQuanLy FOR EACH ROW
+CREATE TRIGGER delete_TaiXe
+    after DELETE
+    ON TaiXe FOR EACH ROW
 BEGIN
     
+    Delete from NhanVien where CMND = old.CMND;
 END$$
 
 DELIMITER ;
+
+
+DELIMITER $$
+
+CREATE TRIGGER delete_LoXe
+    after DELETE
+    ON LoXe FOR EACH ROW
+BEGIN
+    
+    Delete from NhanVien where CMND = old.CMND;
+END$$
+
+DELIMITER ;
+
+
+
+DELIMITER $$
+
+CREATE TRIGGER delete_NguoiQuanLy
+    after DELETE
+    ON NguoiQuanLy FOR EACH ROW
+BEGIN
+    
+    Delete from NhanVien where CMND = old.CMND;
+END$$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE TRIGGER delete_TaiXe
+    after DELETE
+    ON NhanVienNhapXuat FOR EACH ROW
+BEGIN
+    Delete from NhanVienNhapXuat where CMND = old.CMND;
+END$$
+
+DELIMITER ;
+

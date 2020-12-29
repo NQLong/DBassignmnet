@@ -1,1 +1,1 @@
-insert INTO NhanVien ()
+call INSERT_TAIXE()
