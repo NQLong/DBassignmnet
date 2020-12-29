@@ -94,6 +94,7 @@ create table SdtKhachHang(
     IDKhachHang int not null auto_increment,
     foreign key(IDKhachHang) references KhachHang(ID)
 );
+
 create table NguoiGui(
     ID int not null auto_increment,
     foreign key(ID) references KhachHang(ID)
@@ -107,6 +108,8 @@ create table NguoiNhan(
 create table BienBanNguoIDung(
     ID int not null auto_increment primary key,
     IDKho int not null,
+    CuocXeID int, 
+    foreign key (CuocXeID) references CuocXeNoiThanh(ID)
     foreign key (IDKho) references Kho(ID)
 );
 
@@ -116,10 +119,13 @@ create table BienBanGui(
     NgayGui date,
     IDNguoiGui int,
     IDNGuoiNhan int,
+    YeuCauLayHang int,
+    foreign key(YeuCauLayHang) references YeuCauLayHang(ID),
     foreign key(ID) references BienBanNguoIDung(ID),
     foreign key(IDNguoiGui) references NguoiGui(ID),
     foreign key(IDNguoiNhan) references NguoiNhan(ID)
 );
+
 create table BienBanNhan(
     ID int not null auto_increment,
     PhiLienTinh int,
@@ -131,6 +137,7 @@ create table BienBanNhan(
     foreign key(IDNguoiGui) references NguoiGui(ID),
     foreign key(IDNguoiNhan) references NguoiNhan(ID)
 );
+
 create table KienHang(
     ID int not null auto_increment primary key,
     KhoiLuong int,
@@ -139,11 +146,13 @@ create table KienHang(
     foreign key(IDBienBanNguoIDung) references BienBanNguoIDung(ID),
     foreign key(IDBienBanNhapXuat) references BienBanNhapXuat(ID)
 );
+
 CREATE TABLE PhuongTien (
     BienSoXe varchar(20) not null primary key,
     HangXe varchar(50),
     NgayMuaVe Date
 );
+
 CREATE TABLE XeNoiThanh (
     BienSoXe varchar(20),
     LoaiXe varchar(20),
@@ -176,7 +185,7 @@ CREATE TABLE Gan (
     YeuCauID int not null,
     CuocXeID int not null,
     NguoiGui int not null,
-    PhanHoi enum('Cho', 'TuChoi', 'ChapNhan') default 'cho',
+    PhanHoi enum('Cho','TuChoi','ChapNhan','DaCoPhanHoi') default 'Cho',
     primary key (YeuCauID, CuocXeID),
     foreign key (YeuCauID) references YeuCauLayHang(ID),
     foreign key (YeuCauID) references YeuCauLayHang(ID),
