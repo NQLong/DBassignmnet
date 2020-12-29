@@ -201,9 +201,9 @@ CREATE TABLE Gan (
 -- 			WHERE YeuCauID = YCID and CuocXeID = CXID;
             
 --             if PHANHOI = 'ChapNhan' Then
--- 				UPDATE Gan
--- 				SET PhanHoi = 'ChapNhanBoiChuyenKhac'
--- 				WHERE YeuCauID = YCID and CuocXeID != CXID and PhanHoi = 'Cho';
+				-- UPDATE Gan
+				-- SET PhanHoi = 'ChapNhanBoiChuyenKhac'
+				-- WHERE YeuCauID = YCID and CuocXeID != CXID and PhanHoi = 'Cho';
                 
                 
 --                 update YeuCauLayHang
