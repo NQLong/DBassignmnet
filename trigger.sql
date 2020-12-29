@@ -85,3 +85,29 @@ END$$
 
 DELIMITER ;
 
+
+
+DELIMITER $$
+
+CREATE TRIGGER delete_BienBanGui
+    after DELETE
+    ON BienBanGui FOR EACH ROW
+BEGIN
+    Delete from BienBanNguoIDung where ID = old.ID;
+END$$
+
+DELIMITER ;
+
+
+DELIMITER $$
+
+CREATE TRIGGER delete_BienBanNhan
+    after DELETE
+    ON BienBanNhan FOR EACH ROW
+BEGIN
+    Delete from BienBanNguoIDung where ID = old.ID;
+END$$
+
+DELIMITER ;
+
+
