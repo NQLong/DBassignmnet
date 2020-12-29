@@ -1,12 +1,10 @@
-
-delete from TaiXe where CMND = '12345678';
 call INSERT_PHUONGTIEN("49G1-15677","Toyota","2016-06-15");
 call INSERT_PHUONGTIEN("60G1-39512","Hyundai","2016-06-15");
 call INSERT_PHUONGTIEN("40G1-14677","Isuzu","2012-06-15");
 call INSERT_PHUONGTIEN("50G1-28765","Toyota","2012-06-15");
 call INSERT_PHUONGTIEN("20G1-18721","Hyundai","2012-06-15");
 SELECT*FROM PhuongTien;
-call INSERT_NHANVIEN("251215170","2020-12-12","KTX khu A","Dang","Manh");
+call INSERT_NHANVIEN("251215170","2020-12-12","KTX khu A","Dang","Manh");,
 call INSERT_NHANVIEN("251215200","2018-12-20","KTX khu B","Dang","Sieu");
 call INSERT_NHANVIEN("251215230","2016-7-15","Linh Trung,Thu Duc","Nguyen","Cuong");
 call INSERT_NHANVIEN("251215260","2014-7-30","Linh Dong, Thu Duc","Tran","Vinh");
