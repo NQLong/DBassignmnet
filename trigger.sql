@@ -76,7 +76,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE TRIGGER delete_TaiXe
+CREATE TRIGGER delete_NhanVienNhapXuat
     after DELETE
     ON NhanVienNhapXuat FOR EACH ROW
 BEGIN
