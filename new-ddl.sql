@@ -13,23 +13,23 @@ create table NhanVien(
 create table SdtNhanVien(
 	Std char(10) primary key,
     CMNDNhanVien varchar(15) not null,
-    foreign key(CMNDNhanVien) references NhanVien(CMND)
+    foreign key(CMNDNhanVien) references NhanVien(CMND) on delete cascade
 );
 create table NguoiQuanLy(
     CMND varchar(15) not null,
-    FOREIGN KEY (CMND) REFERENCES NhanVien(CMND)
+    FOREIGN KEY (CMND) REFERENCES NhanVien(CMND) on delete cascade
 );
 create table TaiXe(
     CMND varchar(15) not null,
-    FOREIGN KEY (CMND) REFERENCES NhanVien(CMND)
+    FOREIGN KEY (CMND) REFERENCES NhanVien(CMND) on delete cascade
 );
 create table LoXe(
     CMND varchar(15) not null,
-    FOREIGN KEY (CMND) REFERENCES NhanVien(CMND)
+    FOREIGN KEY (CMND) REFERENCES NhanVien(CMND) on delete cascade
 );
 create table NhanVienNhapXuat(
     CMND varchar(15) not null,
-    FOREIGN KEY (CMND) REFERENCES NhanVien(CMND)
+    FOREIGN KEY (CMND) REFERENCES NhanVien(CMND) on delete cascade
 );
 create table Kho(
     Tinh varchar(50),
@@ -38,7 +38,7 @@ create table Kho(
     Ten varchar(50),
     NguoiQuanLy VARCHAR(15),
     ID INT NOT NULL AUTO_INCREMENT,
-    FOREIGN KEY (NguoiQuanLy) REFERENCES NhanVien(CMND),
+    FOREIGN KEY (NguoiQuanLy) REFERENCES NhanVien(CMND) on delete cascade,
     primary key (ID)
 );
 create table CuocXe(
@@ -49,40 +49,40 @@ create table CuocXe(
     TaiXeCMND varchar(15),
     LoXeCMND varchar(15),
     primary key (ID),
-    foreign key (TaiXeCMND) REFERENCES TaiXe(CMND),
-    foreign key (LoXeCMND) REFERENCES LoXe(CMND)
+    foreign key (TaiXeCMND) REFERENCES TaiXe(CMND) on delete cascade,
+    foreign key (LoXeCMND) REFERENCES LoXe(CMND) on delete cascade
 );
 create table CuocXeLienTinh(
     ID int not null,
-    foreign key (ID) REFERENCES CuocXe(ID)
+    foreign key (ID) REFERENCES CuocXe(ID) on delete cascade
 );
 create table CuocXeNoiThanh(
     ID int not null,
-    foreign key (ID) REFERENCES CuocXe(ID)
+    foreign key (ID) REFERENCES CuocXe(ID) on delete cascade
 );
 create table BienBanNhapXuat(
     ID INT NOT NULL AUTO_INCREMENT,
     KhoID int,
     NhanVienIO varchar(15),
     CuocXeID int not null,
-    FOREIGN KEY (KhoID) REFERENCES Kho(ID),
-    FOREIGN KEY (NhanVienIO) REFERENCES NhanVienNhapXuat(CMND),
-    FOREIGN KEY (CuocXeID) REFERENCES CuocXeLienTinh(ID),
+    FOREIGN KEY (KhoID) REFERENCES Kho(ID) on delete cascade,
+    FOREIGN KEY (NhanVienIO) REFERENCES NhanVienNhapXuat(CMND) on delete cascade,
+    FOREIGN KEY (CuocXeID) REFERENCES CuocXeLienTinh(ID) on delete cascade,
     primary key (ID)
 );
 create table BienBanXuat(
     ID INT NOT NULL,
     KhoDichID int not null,
     ##Kho đích
-    foreign key (ID) REFERENCES BienBanNhapXuat(ID),
-    foreign key (KhoDichID) REFERENCES Kho(ID)
+    foreign key (ID) REFERENCES BienBanNhapXuat(ID) on delete cascade,
+    foreign key (KhoDichID) REFERENCES Kho(ID) on delete cascade
 );
 create table BienBanNhap(
     ID INT NOT NULL,
     KhoNguonID int not null,
     ##Kho nguồn
-    foreign key (ID) REFERENCES BienBanNhapXuat(ID),
-    foreign key (KhoNguonID) REFERENCES Kho(ID)
+    foreign key (ID) REFERENCES BienBanNhapXuat(ID) on delete cascade,
+    foreign key (KhoNguonID) REFERENCES Kho(ID) on delete cascade
 );
 create table KhachHang(
     ID int not null auto_increment primary key,
@@ -92,25 +92,25 @@ create table KhachHang(
 create table SdtKhachHang(
     Sdt char(10) primary key,
     IDKhachHang int not null auto_increment,
-    foreign key(IDKhachHang) references KhachHang(ID)
+    foreign key(IDKhachHang) references KhachHang(ID) on delete cascade
 );
 
 create table NguoiGui(
     ID int not null auto_increment,
-    foreign key(ID) references KhachHang(ID)
+    foreign key(ID) references KhachHang(ID) on delete cascade
 );
 
 create table NguoiNhan(
     ID int not null auto_increment,
-    foreign key(ID) references KhachHang(ID)
+    foreign key(ID) references KhachHang(ID) on delete cascade
 );
 
 create table BienBanNguoIDung(
     ID int not null auto_increment primary key,
     IDKho int not null,
     CuocXeID int, 
-    foreign key (CuocXeID) references CuocXeNoiThanh(ID),
-    foreign key (IDKho) references Kho(ID)
+    foreign key (CuocXeID) references CuocXeNoiThanh(ID) on delete cascade,
+    foreign key (IDKho) references Kho(ID) on delete cascade
 );
 
 CREATE TABLE YeuCauLayHang (
@@ -129,10 +129,10 @@ create table BienBanGui(
     IDNguoiGui int,
     IDNGuoiNhan int,
     YeuCauLayHang int,
-    foreign key(YeuCauLayHang) references YeuCauLayHang(ID),
-    foreign key(ID) references BienBanNguoIDung(ID),
-    foreign key(IDNguoiGui) references NguoiGui(ID),
-    foreign key(IDNguoiNhan) references NguoiNhan(ID)
+    foreign key(YeuCauLayHang) references YeuCauLayHang(ID) on delete cascade,
+    foreign key(ID) references BienBanNguoIDung(ID) on delete cascade,
+    foreign key(IDNguoiGui) references NguoiGui(ID) on delete cascade,
+    foreign key(IDNguoiNhan) references NguoiNhan(ID) on delete cascade
 );
 
 create table BienBanNhan(
@@ -142,9 +142,9 @@ create table BienBanNhan(
     PhiNoiThanh int,
     IDNguoiGui int,
     IDNGuoiNhan int,
-    foreign key(ID) references BienBanNguoIDung(ID),
-    foreign key(IDNguoiGui) references NguoiGui(ID),
-    foreign key(IDNguoiNhan) references NguoiNhan(ID)
+    foreign key(ID) references BienBanNguoIDung(ID) on delete cascade,
+    foreign key(IDNguoiGui) references NguoiGui(ID) on delete cascade,
+    foreign key(IDNguoiNhan) references NguoiNhan(ID) on delete cascade
 );
 
 create table KienHang(
@@ -152,8 +152,8 @@ create table KienHang(
     KhoiLuong int,
     IDBienBanNguoIDung int,
     IDBienBanNhapXuat int,
-    foreign key(IDBienBanNguoIDung) references BienBanNguoIDung(ID),
-    foreign key(IDBienBanNhapXuat) references BienBanNhapXuat(ID)
+    foreign key(IDBienBanNguoIDung) references BienBanNguoIDung(ID) on delete cascade,
+    foreign key(IDBienBanNhapXuat) references BienBanNhapXuat(ID) on delete cascade
 );
 
 CREATE TABLE PhuongTien (
@@ -165,19 +165,19 @@ CREATE TABLE PhuongTien (
 CREATE TABLE XeNoiThanh (
     BienSoXe varchar(20),
     LoaiXe varchar(20),
-    foreign key (BienSoXe) references PhuongTien(BienSoXe)
+    foreign key (BienSoXe) references PhuongTien(BienSoXe) on delete cascade
 );
 CREATE TABLE XeLienTinh (
     BienSoXe varchar(20) not null,
     SoContainer int,
-    foreign key (BienSoXe) references PhuongTien(BienSoXe)
+    foreign key (BienSoXe) references PhuongTien(BienSoXe) on delete cascade
 );
 
 CREATE TABLE YeuCau (
     YeuCauID int not null primary key,
     KhachHangID int,
-    foreign key (YeuCauID) references YeuCauLayHang(ID),
-    foreign key (KhachHangID) references NguoiGui(ID)
+    foreign key (YeuCauID) references YeuCauLayHang(ID) on delete cascade,
+    foreign key (KhachHangID) references NguoiGui(ID) on delete cascade
 );
 
 CREATE TABLE Gan (
@@ -186,32 +186,7 @@ CREATE TABLE Gan (
     NguoiGui int not null,
     PhanHoi enum('Cho','TuChoi','ChapNhan','DaCoPhanHoi') default 'Cho',
     primary key (YeuCauID, CuocXeID),
-    foreign key (YeuCauID) references YeuCauLayHang(ID),
-    foreign key (YeuCauID) references YeuCauLayHang(ID),
-    foreign key (CuocXeID) references CuocXe(ID)
+    foreign key (YeuCauID) references YeuCauLayHang(ID) on delete cascade,
+    foreign key (YeuCauID) references YeuCauLayHang(ID) on delete cascade,
+    foreign key (CuocXeID) references CuocXe(ID) on delete cascade
 );
-
--- DELIMITER $$
--- CREATE DEFINER=`root`@`localhost` PROCEDURE `UPDATE_GAN`(YCID INT, CXID INT, PHANHOI enum('Cho','TuChoi','ChapNhan','ChapNhanBoiChuyenKhac'))
--- BEGIN
--- 		if (select count(*) from Gan where PhanHoi = 'ChapNhan' = 0) Then
--- 			UPDATE Gan
--- 			SET PhanHoi = PHANHOI
--- 			WHERE YeuCauID = YCID and CuocXeID = CXID;
-            
---             if PHANHOI = 'ChapNhan' Then
--- 				UPDATE Gan
--- 				SET PhanHoi = 'ChapNhanBoiChuyenKhac'
--- 				WHERE YeuCauID = YCID and CuocXeID != CXID and PhanHoi = 'Cho';
-                
-                
---                 update YeuCauLayHang
---                 Set TrangThai = 'DangXuLy'
---                 Where ID = YCID;
---             end if;
-            
-            
---         end if;
-        
--- END$$
--- DELIMITER ;
