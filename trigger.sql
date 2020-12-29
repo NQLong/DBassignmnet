@@ -133,3 +133,26 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+
+DELIMITER $$
+
+CREATE TRIGGER delete_XeNoiThanh
+    after DELETE
+    ON XeNoiThanh FOR EACH ROW
+BEGIN
+    Delete from PhuongTien where BienSoXe = old.BienSoXe;
+END$$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE TRIGGER delete_XeLienTinh
+    after DELETE
+    ON XeLienTinh FOR EACH ROW
+BEGIN
+    Delete from PhuongTien where BienSoXe = old.BienSoXe;
+END$$
+
+DELIMITER ;
