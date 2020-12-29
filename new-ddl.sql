@@ -36,7 +36,9 @@ create table Kho(
     DiaChi varchar(50),
     DienTich float,
     Ten varchar(50),
+    NguoiQuanLy VARCHAR(15)
     ID INT NOT NULL AUTO_INCREMENT,
+    FOREIGN KEY (NguoiQuanLy) REFERENCES NhanVien(CMND),
     primary key (ID)
 );
 create table CuocXe(
