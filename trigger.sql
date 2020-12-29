@@ -24,7 +24,7 @@ AFTER INSERT
 ON BienBanGui FOR EACH ROW
 BEGIN
     IF new.YeuCauLayHang <> null THEN
-        If select count(*) from YeuCauLayHang <> 0 Then
+        If (select count(*) from YeuCauLayHang Where ID = new.YeuCauLayHang <> 0) Then
             update YeuCauLayHang
             Set TrangThai = 'DaXuLy'
             Where ID = old.YeuCauID;
@@ -35,4 +35,13 @@ END$$
 DELIMITER ;
 
 
+DELIMITER $$
 
+CREATE TRIGGER delete_NhanVien
+    Before DELETE
+    ON NguoiQuanLy FOR EACH ROW
+BEGIN
+    
+END$$
+
+DELIMITER ;

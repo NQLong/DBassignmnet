@@ -36,7 +36,7 @@ create table Kho(
     DiaChi varchar(50),
     DienTich float,
     Ten varchar(50),
-    NguoiQuanLy VARCHAR(15)
+    NguoiQuanLy VARCHAR(15),
     ID INT NOT NULL AUTO_INCREMENT,
     FOREIGN KEY (NguoiQuanLy) REFERENCES NhanVien(CMND),
     primary key (ID)
@@ -109,8 +109,17 @@ create table BienBanNguoIDung(
     ID int not null auto_increment primary key,
     IDKho int not null,
     CuocXeID int, 
-    foreign key (CuocXeID) references CuocXeNoiThanh(ID)
+    foreign key (CuocXeID) references CuocXeNoiThanh(ID),
     foreign key (IDKho) references Kho(ID)
+);
+
+CREATE TABLE YeuCauLayHang (
+    ID int not null auto_increment,
+    SoKienHang int,
+    KhoiLuong int,
+    TrangThai enum('ChuaXuLy', 'DangXuLy', 'DaXuLy') default 'ChuaXuLy', 
+    primary key (ID)
+    
 );
 
 create table BienBanGui(
@@ -164,16 +173,6 @@ CREATE TABLE XeLienTinh (
     foreign key (BienSoXe) references PhuongTien(BienSoXe)
 );
 
-CREATE TABLE YeuCauLayHang (
-    ID int not null auto_increment,
-    SoKienHang int,
-    KhoiLuong int,
-    IDBienBanGui int,
-    TrangThai enum('ChuaXuLy', 'DangXuLy', 'DaXuLy') default 'ChuaXuLy', 
-    primary key (ID),
-    foreign key (IDBienBanGui) references BienBanGui(ID)
-);
-
 CREATE TABLE YeuCau (
     YeuCauID int not null primary key,
     KhachHangID int,
@@ -201,9 +200,9 @@ CREATE TABLE Gan (
 -- 			WHERE YeuCauID = YCID and CuocXeID = CXID;
             
 --             if PHANHOI = 'ChapNhan' Then
-				-- UPDATE Gan
-				-- SET PhanHoi = 'ChapNhanBoiChuyenKhac'
-				-- WHERE YeuCauID = YCID and CuocXeID != CXID and PhanHoi = 'Cho';
+-- 				UPDATE Gan
+-- 				SET PhanHoi = 'ChapNhanBoiChuyenKhac'
+-- 				WHERE YeuCauID = YCID and CuocXeID != CXID and PhanHoi = 'Cho';
                 
                 
 --                 update YeuCauLayHang

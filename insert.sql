@@ -1,0 +1,1 @@
+insert INTO NhanVien ()
