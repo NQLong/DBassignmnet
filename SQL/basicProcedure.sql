@@ -274,9 +274,9 @@ DELIMITER ;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `TopNKhachHangGui`(n int)
 BEGIN
-	select count(*) as SoLanGui, ID, Ho, Ten from BienBanGui join KhachHang
-    where ID = IDNguoiGui
-    group by ID
+	select count(*) as SoLanGui, KhachHang.ID, Ten from BienBanGui join KhachHang
+    where KhachHang.ID = IDNguoiGui
+    group by KhachHang.ID
     order by SoLanGui
     limit n;
 END$$
