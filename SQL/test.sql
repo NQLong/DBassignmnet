@@ -50,6 +50,13 @@ DELETE	FROM XeNoiThanh WHERE BienSoXe = "20G1-18721";
 delete from XeNoiThanh where 1; 
 delete from PhuongTien;
 
+-- trigger 4 khi update kho kiem tra dien tich kho phai lon hon 10
+
+select * from kho;
+CALL UPDATE_KHO(1, "Tp HCM", "Dai Hoc Bach Khoa", 5, "Kho Bach Khoa 1");
+
+-- trigger 5 , khi them khach hang, kiem tra ten nguoi do hop le (khong co chu so)
+CALL INSERT_KHACHHANG("Long123", "KTX khu B");
 
 -- test cau 3, proce
 -- proce tim khach hang theo dia chi 
@@ -76,9 +83,10 @@ call KhachHangDenTu("ong");
 -- CALL INSERT_BIENBANGUI(1,100000,"2020-12-12",2,4);
 -- CALL INSERT_BIENBANGUI(1,100000,"2020-12-12",2,4);
 -- drop procedure TopNKhachHangGui;
+-- DELETE FROM BIENBANGUI WHERE 1;
 
 select * from BIENBANGUI;
-DELETE FROM BIENBANGUI WHERE 1;
+
 CALL TopNKhachHangGui(2);
 SELECT * FROM KHO;
 

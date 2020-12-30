@@ -156,3 +156,26 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER CHECK_AREA
+    BEFORE UPDATE
+    ON kho FOR EACH ROW
+BEGIN 
+    IF NEW.DienTich < 10 THEN
+		SIGNAL sqlstate '45001' set message_text = "Hay nhap lai";
+    END IF;
+END$$    
+DELIMITER ;
+
+DELIMITER $$
+DROP TRIGGER IF EXISTS CHECK_CUSTOMER;
+CREATE TRIGGER CHECK_CUSTOMER
+    BEFORE INSERT
+    ON khachhang FOR EACH ROW
+BEGIN 
+    IF NEW.Ten REGEXP '[0123456789]' THEN
+		SIGNAL sqlstate '45001' set message_text = "No way ! You cannot do this !";
+    END IF;
+END$$    
+DELIMITER ;
